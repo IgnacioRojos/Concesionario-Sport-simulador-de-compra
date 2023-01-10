@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.conteiner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    
+}
+
+input{
+    outline: 0;
+    width: 100%;
+    margin-top: 30px; 
+
+}
+
+.card{
+    width: 350px;
+}
+
+.buscador{
+    width: 280px;
+    padding-left: 80px;
+}
+
+.botonBuscador{
+    width: 100px;
+    height: 40px;
+    margin-top: 30px;
+    
+
+}
+
+.alert{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-left: 500px;
+    margin-right: 500px;
+}
+
+.carritoDeComprasImg{
+    margin-left: 500px;
+    margin-top: 50px;
+}
