@@ -1,71 +1,56 @@
-const usuarios = [{
-    usu : "ignacio",
-    contraseña: "1234"
+
+
+const autos = [{
+    img : "../assets/img/fiat punto.jpg",
+    titulo : "Fiat Uno",
+    id: "1"
 },
-{
-    usu: "miguel",
-    contrseña: "12345" 
-},
-{
-    usu: "valentina",
-    contrseña: "56123"
-}
+ {
+    img : "../assets/img/vento.jpg",
+    titulo : "Wolsvagen Vento",
+    id: "2"
+ },
+ {
+    img : "../assets/img/bora.jpg",
+    titulo : "Wolsvagen Bora",
+    id: "3"
+ },
+ {
+    img : "../assets/img/chevrolet corsa.jpg",
+    titulo : "Chevrolet Corsa",
+    id: "4"
+ },
+ {  
+    img : "../assets/img/ford fiesta.jpg",
+    titulo : "Ford Fiesta",
+    id: "5"
+
+ },
+ {
+    img : "../assets/img/wolsvagen up.jpg",
+    titulo : "wolsvagen up",
+    id: "6"
+ },
+ {
+    img : "../assets/img/ford ka.jpg",
+    titulo : "Ford Ka",
+    id: "7"
+ },
+ {
+    img : "../assets/img/fiat siena.jpg",
+    titulo : "Fiat Siena",
+    id: "8"
+ },
+ {
+    img : "../assets/img/yaris.jpg",
+    titulo : "Toyota Yaris",
+    id: "9"
+ },
 ]
-const usuarioLogin = document.getElementById("usuario"),
-      contraseñaLogin = document.getElementById("contraseña"),
+const
       botonLogin = document.getElementById("botonLoginn"),
       recordar = document.getElementById("recordar"),
       carritoo = document.getElementById("carrito")
-
-function guardarDatos(usuarioDB, storage){
-    const user = {
-        nom: usuarioDB.usu,
-        pass:usuarioDB.contraseña
-    }
-    storage.setItem("usuario",JSON.stringify(user));
-}
-
-function recuperarDatos(storage){
-    let usuarioStorage = JSON.parse(storage.getItem("usuario"));
-    return usuarioStorage;
-}
-
-function validarUsuario(userDB, nombre, pass){
-    let encontrado = userDB.find((userDB) => userDB.usu == nombre);
-
-    if (typeof encontrado == 'undefined'){
-        return false;
-    }else{
-        if (encontrado.contraseña != pass){
-            return false;
-        }else{
-            return encontrado;
-        }
-    }
-}
-
-botonLogin.addEventListener("click",(event)=>  {
-    event.preventDefault();
-    
-    if(!usuarioLogin.value || !contraseñaLogin.value){
-        alert("escribi");
-    }else{
-        let data = validarUsuario(usuarios, usuarioLogin.value, contraseñaLogin.value);
-        window.location = "views/comprarAuto.html";
-    }
-    if(!data){
-        alert("usuario incorrecto");
-
-    }else{
-        if(recordar.checked) {
-            guardarDatos(data,localStorage);
-        }else{
-            guardarDatos(data,sessionStorage);
-        }
-    }
-    
-  
-});
 
 
 const cards = document.querySelectorAll(".card");
@@ -80,15 +65,14 @@ let articulosCarro = [];
 
 function leerDatosProductos(producto){
     const infoProducto ={
-        titulo: producto.querySelector(".card-title").textContent,
-        id: producto.querySelector(".btn").getAttribute("data-id"),
+        titulo:producto.querySelector(".card-title").textContent,
+        id: producto.querySelector(".btn").getAttribute("data-id")
     };
     
     articulosCarro = [...articulosCarro, infoProducto];
 
     carritoHTML();
-}    
-
+}
 
 
 function carritoHTML() {
@@ -99,7 +83,6 @@ function carritoHTML() {
         <div class=" row row-cols-1 row-cols-md-3 g-4">    
             <div class="card h-100">
                 <div class="card-body">
-                    
                     <h5>${producto.titulo}</h5>
                     <button class="btn btn-danger" id="${producto.id}">Eliminar Auto</button>
                 </div>
@@ -130,4 +113,5 @@ function eliminarProducto(e) {
 
 }
 
+carrito.addEventListener("click", eliminarProducto);
 
