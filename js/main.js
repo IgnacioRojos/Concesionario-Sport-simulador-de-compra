@@ -1,8 +1,8 @@
-var usuarioLogin,contraseñaLogin,recordar;
+/*var usuarioLogin,contraseñaLogin,recordar;
 
 usuarioLogin = document.getElementById("usuario"),
 contraseñaLogin = document.getElementById("contraseña"),
-Checked = document.getElementById("recordar");
+Checked = document.getElementById("recordar");*/
 /*recordar = document.getElementById("recordar").Checked;*/
 
 
@@ -12,10 +12,18 @@ function login(){
     
     usuarioLogin = document.getElementById("usuario").value,
     contraseñaLogin = document.getElementById("contraseña").value;
-  
+    const user ={
+        nom : usuarioLogin,
+        pass : contraseñaLogin
+    }
 
     if (usuarioLogin == "ignacio" && contraseñaLogin == "1234"){
         window.location = "views/ComprarAuto.html";
+        if(recordar.checked){
+            guardarDatosLocal(user);
+        }else{
+            guardarDatosSesion(user);
+        }
     }else{
         if (usuarioLogin != "ignacio" || contraseñaLogin != "1234"){
             let alerta = document.createElement("div");
@@ -27,35 +35,16 @@ function login(){
         
 }
 
-function guardarDatosLocal(){
-    const user = {
-        nom: "ignacio",
-        pass: 1234
-    }
+function guardarDatosLocal(user){
     localStorage.setItem("usuario:",JSON.stringify(user))
 }
 
-function guardarDatosSesion(){
-    const user = {
-        nom: "ignacio",
-        pass: 1234
-    }
+function guardarDatosSesion(user){
     sessionStorage.setItem("usuario:",JSON.stringify(user))
 }
 
-function recuperarDatos(storage){
-    let usuarioStorage = JSON.parse(storage.getItem("usuario"));
-    return usuarioStorage;
-}
-
-
-botonLogin.addEventListener("click",(e)=>{
-    e.preventDefault();
-    if(Checked == true){
-        alert("esta seleccionado");
-        /*guardarDatosLocal();*/
-    }
-    
+botonLogin.addEventListener("click",()=>{
+  login();
 
 })
 

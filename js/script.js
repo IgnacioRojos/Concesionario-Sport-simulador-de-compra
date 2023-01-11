@@ -65,6 +65,7 @@ let articulosCarro = [];
 
 function leerDatosProductos(producto){
     const infoProducto ={
+        imagen: producto.querySelector(".card-img-top").getAttribute("src"),
         titulo:producto.querySelector(".card-title").textContent,
         id: producto.querySelector(".btn").getAttribute("data-id")
     };
@@ -83,6 +84,7 @@ function carritoHTML() {
         <div class=" row row-cols-1 row-cols-md-3 g-4">    
             <div class="card h-100">
                 <div class="card-body">
+                    <img src= "${producto.imagen}" class = "card-img-top">
                     <h5>${producto.titulo}</h5>
                     <button class="btn btn-danger" id="${producto.id}">Eliminar Auto</button>
                 </div>
