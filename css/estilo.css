@@ -58,3 +58,12 @@ input{
     margin-top: 50px;
     margin-left: 800px;
 }
+.bienvenida{
+    margin-left: 800px;
+    color: black;
+}
+
+.botonAyuda{
+    margin-left: 1700px;
+    background-color: red;
+}

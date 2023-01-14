@@ -48,9 +48,8 @@ const autos = [{
  },
 ]
 const
-      botonLogin = document.getElementById("botonLoginn"),
-      recordar = document.getElementById("recordar"),
-      carritoo = document.getElementById("carrito")
+    boton = document.getElementById("botonLogin"),
+    carritoo = document.getElementById("carrito")
 
 
 const cards = document.querySelectorAll(".card");
@@ -115,5 +114,46 @@ function eliminarProducto(e) {
 
 }
 
-carrito.addEventListener("click", eliminarProducto);
+carritoo.addEventListener("click", eliminarProducto);
+
+
+
+    
+
+
+
+const salud = document.getElementById("saludo");
+const roww = document.createElement("div");
+const usuar = JSON.parse(localStorage.getItem("usuario:"));
+
+
+roww.innerHTML = `<h2 class = "bienvenida">Bienvenido "${usuar.nom}"</h2>`;
+salud.appendChild(roww);
+
+
+const alerta = document.getElementById("datos");
+const botonBorr = document.getElementById("botonBorrar");
+let fila = document.createElement("div");
+
+function datosUsuario(){
+    const fila = document.createElement("div");
+    const alerta = document.getElementById("datos");
+
+
+    fila.innerHTML =    `<div class= "alert alert-danger" role= "alert"> Sus datos son: Usuario: "${usuar.nom}", Contraseña: "${usuar.pass}"
+                            <button id= "botonBorrar" class = "btn btn-danger">Aceptar</button>
+                        </div>`;
+    alerta.appendChild(fila);
+    const botonBorr = document.getElementById("botonBorrar");
+
+    botonBorr.addEventListener("click",limpiarAlertas);
+}
+
+botonMuestra.addEventListener("click",datosUsuario);
+
+function limpiarAlertas(){
+    alerta.innerHTML = "";
+}
+
+
 
