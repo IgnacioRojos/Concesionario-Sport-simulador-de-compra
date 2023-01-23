@@ -30,8 +30,9 @@ input{
 }
 
 .buscador{
-    width: 280px;
-    padding-left: 80px;
+    width: 380px;
+    margin-left: 10px;
+    
 }
 
 .botonBuscador{
@@ -66,4 +67,8 @@ input{
 .botonAyuda{
     margin-left: 1700px;
     background-color: red;
+}
+
+.btnSeguro{
+    margin-top: 20px;
 }
