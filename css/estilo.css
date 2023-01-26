@@ -72,3 +72,22 @@ input{
 .btnSeguro{
     margin-top: 20px;
 }
+
+.botonesKilometros{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+}
+.listKm{
+    list-style: none;
+    margin-bottom: 10px;
+}
+.listadoKilometros{
+    margin-bottom: 20px;;
+}
+
+.botonOut{
+    margin-left: 1700px;
+    background-color: red;
+    margin-bottom: 50px;
+}

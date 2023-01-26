@@ -1,59 +1,47 @@
-/*const autos = [
-  {
-    img: "../assets/img/fiat punto.jpg",
-    titulo: "Fiat Uno",
-    id: "1",
-  },
-  {
-    img: "../assets/img/vento.jpg",
-    titulo: "Wolsvagen Vento",
-    id: "2",
-  },
-  {
-    img: "../assets/img/bora.jpg",
-    titulo: "Wolsvagen Bora",
-    id: "3",
-  },
-  {
-    img: "../assets/img/chevrolet corsa.jpg",
-    titulo: "Chevrolet Corsa",
-    id: "4",
-  },
-  {
-    img: "../assets/img/ford fiesta.jpg",
-    titulo: "Ford Fiesta",
-    id: "5",
-  },
-  {
-    img: "../assets/img/wolsvagen up.jpg",
-    titulo: "wolsvagen up",
-    id: "6",
-  },
-  {
-    img: "../assets/img/ford ka.jpg",
-    titulo: "Ford Ka",
-    id: "7",
-  },
-  {
-    img: "../assets/img/fiat siena.jpg",
-    titulo: "Fiat Siena",
-    id: "8",
-  },
-  {
-    img: "../assets/img/yaris.jpg",
-    titulo: "Toyota Yaris",
-    id: "9",
-  },
-];*/
+
+/*variables y DOM que necesito*/
+
+const autos= [];
+
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+
+
 const boton = document.getElementById("botonLogin"),
-      carritoo = document.getElementById("carrito");
-      muestro = document.getElementById("muestroPrecio");
- 
+      carritoo = document.getElementById("carrito"),
+      muestro = document.getElementById("muestroPrecio"),
+      salud = document.getElementById("saludo"),
+      roww = document.createElement("div"),
+      usuar = JSON.parse(localStorage.getItem("usuario:")) || [],
+      botonBuscar = document.getElementById("botonSearch"),
+      botonSegu = document.getElementById("botonSeguro"),
+      alerta = document.getElementById("datos"),
+      botonBorr = document.getElementById("botonBorrar"),
+      botonFiat = document.getElementById("fiat"),
+      botonVw = document.getElementById("vw"),
+      botonRenault = document.getElementById("renault"),
+      botonChevrolet = document.getElementById("chevrolet"),
+      listado = document.createElement("div"),
+      cerrado = document.createElement("div"),
+      kilometrosLista = document.getElementById("listadoKilometros"),
+      botonParaSalir = document.getElementById("botonSalida");
+
+/*fin de variables y DOM que necesito*/
+
+/*funcion para deslogearse*/
+function loginOut(){
+  window.location ="../login.html";
+  localStorage.clear();
+}
+
+/*boton al cual se le da la funcion de volver a la pagina de login del usuario eliminando los datos guardados en el local*/
+
+botonParaSalir.addEventListener("click", loginOut);
 
 
+/*funcion para calcular precio del auto dependiendo la marca que se ingrese*/
 
 function calcularPrecio(){
-  /*let precio = 0;*/
   const marcaa = document.getElementById("marca").value;
   if (marcaa == "fiat"){
     const muestro = document.getElementById("muestroPrecio");
@@ -68,7 +56,7 @@ function calcularPrecio(){
     botonBor.addEventListener("click", limpiar);
   } else {
     if(marcaa == "vw"){
-      muestro = document.getElementById("muestroPrecio");
+      const muestro = document.getElementById("muestroPrecio");
       aviso = document.createElement("div");
       aviso.innerHTML = `<div class="alert alert-primary" role="alert" > 
                             <h3>El precio del vowlsvagen up es de 1.500.000</h3>
@@ -82,7 +70,7 @@ function calcularPrecio(){
     } 
   }
   if (marcaa == "chevrolet"){
-    muestro = document.getElementById("muestroPrecio");
+    const muestro = document.getElementById("muestroPrecio");
     aviso = document.createElement("div");
     aviso.innerHTML = `<div class="alert alert-primary" role="alert" > 
                           <h3>El precio del chevrolet corsa es de 2.650.000</h3>
@@ -95,7 +83,7 @@ function calcularPrecio(){
 
   } else{
     if (marcaa== "renault"){
-      muestro = document.getElementById("muestroPrecio");
+      const muestro = document.getElementById("muestroPrecio");
       aviso = document.createElement("div");
       aviso.innerHTML = `<div class="alert alert-primary" role="alert" > 
                             <h3>El precio del renault sandero es de 5.000.000</h3>
@@ -108,7 +96,7 @@ function calcularPrecio(){
     }
   }
   if(marcaa == ""){
-    muestro = document.getElementById("muestroPrecio");
+      const muestro = document.getElementById("muestroPrecio");
       aviso = document.createElement("div");
       aviso.innerHTML = `<div class="alert alert-primary" role="alert" > 
                             <h3>No se ingreso ninguna marca</h3>
@@ -119,29 +107,18 @@ function calcularPrecio(){
       const botonBor = document.getElementById("botonBo");
       botonBor.addEventListener("click", limpiar);
   }
+  
 }
 
 function limpiar(){
   muestro.innerHTML= "";
 }
 
-const botonBuscar = document.getElementById("botonSearch");
+/*boton al cual se le da la funcion de calcular el precio*/
 
 botonBuscar.addEventListener("click", calcularPrecio);
 
-
-
-  /*if (op == 3) {
-    let auto = prompt("ingrese la marca de su auto (si no ingresa nada volvera al menu): ");
-    calcularKilometros(auto);
-  }
-  if (op == 4) {
-    let opci = prompt( "Desea calculcar su presupuesto con seguro ingrese SI, en el caso contrario ingrese NO: ");
-    calcularPresupuesto(500, opci);
-  }
-
-  op = prompt("ingrese la opcion que desee (1- calcular precio 2- calcular seguro 3- calcular la cantidad de KM que hace tu auto 4- calcular el presupuesto de tu auto con o sin seguro 0- para salir): ");
-}*/
+/*funcion asincronica que calcula el seguro de tu auto (se ingresa el año y el precio del vehiculo y se divide el año por el precio)*/
 
 async function calcularSeguro() {
   const { value: formValues } = await Swal.fire({
@@ -163,125 +140,112 @@ async function calcularSeguro() {
   if (formValues) {
     Swal.fire(JSON.stringify(formValues))
   }
- 
 }
 
-const botonSegu = document.getElementById("botonSeguro");
+/*boton al cual se le da la funcion de calcular el precio del seguro*/
 
 botonSegu.addEventListener("click", calcularSeguro);
 
-/*function calcularKilometros(auto) {
-  if (auto == "fiat") {
-    for (let i = 1; i <= 45; i++) {
-      kilometros = i * 9.5;
-      let blanco = " ";
-      console.log("la cantidad de kilometros que va a hacer con: " + blanco + i +" litros es de: " + blanco + kilometros + "km");
-    }
-  } else {
-    if (auto == "vw") {
-      for (let i = 1; i <= 50; i++) {
-        kilometros = i * 10;
-        let blanco = " ";
-        console.log("la cantidad de kilometros que va a hacer con: " + blanco + i + " litros es de: " + blanco + kilometros + "km");
+
+/*funcion que calcula los kilometros que puede hacer un auto, se presiona el boton de la marca de tu auto y se desplegará una lista*/
+
+function calcularKilometros(auto) {
+  const listado = document.createElement("div"),
+        cerrado = document.createElement("div");
+
+        
+  switch(auto){
+    
+    case fiat:
+      for (let i = 1; i <= 10; i++) {
+        kilometros = i * 9.5;
+        listado.innerHTML += `<li class= "listKm">La cantidad de kilometros que va a a hacer con ${i} litros es de: ${kilometros} "km" </li>`
+        cerrado.innerHTML = `<buttom class="btn btn-danger"id="botonLista">aceptar</buttom>`
+        kilometrosLista.appendChild(listado), 
+        kilometrosLista.appendChild(cerrado); 
       }
-    }
-  }
-  if (auto == "chevrolet") {
-    for (let i = 1; i <= 55; i++) {
-      kilometros = i * 7;
-      let blanco = " ";
-      console.log("la cantidad de kilometros que va a hacer con: " + blanco + i + " litros es de: " + blanco + kilometros + "km");
-    }
-  }
 
-  if (auto == "renault") {
-    for (let i = 1; i <= 40; i++) {
-      kilometros = i * 8;
-      let blanco = " ";
-      console.log("la cantidad de kilometros que va a hacer con: " + blanco + i +" litros es de: " + blanco + kilometros +"km");
-    }
-  }
-}*/
+    const botonList = document.getElementById("botonLista");
+    botonList.addEventListener("click",limpiarLista);
+    break;
 
-/* HACER ALGO CON ESTA FUNCION */
+    case vw:
+      for (let i = 1; i <= 10; i++) {
+        kilometros = i * 10;
+        listado.innerHTML += `<li class= "listKm">La cantidad de kilometros que va a a hacer con ${i} litros es de: ${kilometros} "km" </li>`
+        cerrado.innerHTML = `<buttom class="btn btn-danger" id= "botonList">aceptar</buttom>`
+        kilometrosLista.appendChild(listado);
+        kilometrosLista.appendChild(cerrado);
+
+      }
+
+    const botonLis = document.getElementById("botonList")
+    botonLis.addEventListener("click",limpiarLista);
+    break;
+
+    case renault:
+      for (let i = 1; i <= 10; i++) {
+        kilometros = i * 8;
+        listado.innerHTML += `<li class= "listKm">La cantidad de kilometros que va a a hacer con ${i} litros es de: ${kilometros} "km" </li>`
+        cerrado.innerHTML = `<buttom class="btn btn-danger" id= "botonLis">aceptar</buttom>`
+        kilometrosLista.appendChild(listado);
+        kilometrosLista.appendChild(cerrado);
+
+      }
+
+    botonLi = document.getElementById("botonLis"),
+    botonLi.addEventListener("click",limpiarLista);
+    break;
+
+    case chevrolet:
+      for (let i = 1; i <= 10; i++) {
+        kilometros = i * 8;
+        listado.innerHTML += `<li class= "listKm">La cantidad de kilometros que va a a hacer con ${i} litros es de: ${kilometros} "km" </li>`
+        cerrado.innerHTML = `<buttom class="btn btn-danger" id="botonLi">aceptar</buttom>`
+        kilometrosLista.appendChild(listado);
+        kilometrosLista.appendChild(cerrado);
+
+      }
+
+    botonL = document.getElementById("botonLi"),
+    botonL.addEventListener("click",limpiarLista);
+    break;
 
 
-/*SEGUNDA ENTREGA */ 
-
-
-
-
-
-
-
-
-const cards = document.querySelectorAll(".card");
-cards.forEach((card) => {
-  card.addEventListener("click", (e) => {
-    leerDatosProductos(e.target.parentElement);
-  });
-});
-
-let articulosCarro = [];
-
-function leerDatosProductos(producto) {
-  const infoProducto = {
-    imagen: producto.querySelector(".card-img-top").getAttribute("src"),
-    titulo: producto.querySelector(".card-title").textContent,
-    id: producto.querySelector(".btn").getAttribute("data-id"),
-  };
-
-  articulosCarro = [...articulosCarro, infoProducto];
-
-  carritoHTML();
-}
-
-function carritoHTML() {
-  limpiarHTML();
-  articulosCarro.forEach((producto) => {
-    const row = document.createElement("div");
-    row.innerHTML = `
-        <div class=" row row-cols-1 row-cols-md-3 g-4">    
-            <div class="card h-100">
-                <div class="card-body">
-                    <img src= "${producto.imagen}" class = "card-img-top">
-                    <h5>${producto.titulo}</h5>
-                    <button class="btn btn-danger" id="${producto.id}">Eliminar Auto</button>
-                </div>
-            </div>
-        </div>
-                `;
-
-    carritoo.appendChild(row);
-  });
-}
-
-function limpiarHTML() {
-  carritoo.innerHTML = "";
-}
-
-function eliminarProducto(e) {
-  if (e.target.classList.contains("btn-danger")) {
-    let productoID = e.target.getAttribute("id");
-    articulosCarro = articulosCarro.filter(
-      (producto) => producto.id !== productoID
-    );
-
-    carritoHTML();
   }
 }
 
-carritoo.addEventListener("click", eliminarProducto);
 
-const salud = document.getElementById("saludo");
-const roww = document.createElement("div");
-const usuar = JSON.parse(localStorage.getItem("usuario:")) || [];
+
+function limpiarLista(){
+  kilometrosLista.innerHTML= " ";
+ 
+
+}
+
+/*botones a los cuales se le da la funcion de desplegar la lista con los kilometros que un auto puede hacer*/
+
+botonFiat.addEventListener("click",()=> calcularKilometros(fiat));
+botonVw.addEventListener("click",()=> calcularKilometros(vw));
+botonRenault.addEventListener("click",()=> calcularKilometros(renault));
+botonChevrolet.addEventListener("click",()=> calcularKilometros(chevrolet));
+
+/*titulo de bienvenida al usuario con un temporizador para que se vaya y no estorbe al usuario*/ 
 
 roww.innerHTML = `<h2 class = "bienvenida">Bienvenido "${usuar.nom}"</h2>`;
 salud.appendChild(roww);
 
-const alerta = document.getElementById("datos");
-const botonBorr = document.getElementById("botonBorrar");
+function limpiarSaludo(){
+  roww.innerHTML="";
+}
+
+
+setTimeout(()=>{
+  limpiarSaludo();
+}, 4000);
+
+/*variable y funcion que utilizo para mostrar datos del usuario si se los olvido, tiene un boton adentro que hace que se elimine el cartel con los datos*/
+
 let fila = document.createElement("div");
 
 function datosUsuario() {
@@ -297,13 +261,15 @@ function datosUsuario() {
   botonBorr.addEventListener("click", limpiarAlertas);
 }
 
+/*boton al cual se le da la funcion de mostrar los datos */
+
 botonMuestra.addEventListener("click", datosUsuario);
 
 function limpiarAlertas() {
   alerta.innerHTML = "";
 }
 
-
+/*PARTE DEL ECOMERCE se crea una clase de auto y se utiliza fetch, data.json,etc..*/ 
 class Auto{
 
 	constructor(img,titulo,id){
@@ -311,21 +277,104 @@ class Auto{
     this.titulo = titulo;
     this.id = id;
 	}
+  mostrarAutos(){
+    const tarjeta= `<div class="col">
+                      <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <div class="card h-100 card">
+                          <div class="card-body">
+                            <img src=${this.img} class="card-img-top perfilFoto" alt="...">
+                            <h5 class="card-title">${this.titulo}</h5>
+                            <button class="btn btn-primary" id= ${this.id} >Comprar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>`
+    const contenedor = document.getElementById("contenedorCards");
+    contenedor.innerHTML += tarjeta
+  }
+
+  agregarEvent(){
+    const botonAgregar = document.getElementById(this.id);
+    const encontrarAuto = autos.find(p => p.id == this.id);
+    botonAgregar.addEventListener("click", () => agregarAlCarro(encontrarAuto));
+  }
+
+
 
 }
+/*fetch con diferentes funcionalidades*/ 
 
-
-fetch ('./data.json')
+fetch("../data.json")
   .then((res) => res.json())
-  .then((data) => console.log(data));
+  .then((data)=>{
+    data.forEach(aut =>{
+      let newAuto = new Auto(aut.img, aut.titulo, aut.id)
+      autos.push(newAuto)
+    }),
+    autos.forEach(e =>{
+      e.mostrarAutos()
+    }),
+    autos.forEach(e =>{
+      e.agregarEvent()
+    })
+  
+  })
+  .catch(err => console.log(err));
 
-/*<div class="row row-cols-1 row-cols-md-3 g-4">
-			  <div class="col">
-			    <div class="card h-100 card">
-			      <div class="card-body">
-					<img src="../assets/img/fiat punto.jpg" class="card-img-top perfilFoto" alt="...">
-			        <h5 class="card-title">Fiat Punto</h5>
-					<button class="btn btn-primary" data-id="1">Comprar</button>
-	      </div>
-  </div>
-*/
+  /*funcion que agrega autos al carro,la parte del carro se encuentra abajo de los autos que se muestran*/
+
+function agregarAlCarro(auto){
+  const enCarrito = carrito.find(aut => aut.id === auto.id)
+  if(!enCarrito){
+    carrito.push({...auto})
+    localStorage.setItem("carrito",JSON.stringify(carrito))
+  } else {
+    let carritoFilt = carrito.filter(aut => aut.id != auto.id)
+    carrito = [...carritoFilt]
+  }
+
+  carritoHTML();
+}
+
+/*funcion para mostrar los autos en el carro*/
+
+function carritoHTML() {
+  limpiarHTML();
+  carrito.forEach((auto) => {
+    const row = document.createElement("div");
+    row.innerHTML = `
+      <div class = "col">
+        <div class=" row row-cols-1 row-cols-md-3 g-4">    
+            <div class="card h-100">
+                <div class="card-body">
+                    <img src= "${auto.img}" class = "card-img-top">
+                    <h5>${auto.titulo}</h5>
+                    <button class="btn btn-danger" id="${auto.id}">Eliminar Auto</button>
+                </div>
+            </div>
+        </div>
+      </div>          
+        `;
+
+    carritoo.appendChild(row);
+  });
+}
+
+function limpiarHTML() {
+  carritoo.innerHTML = "";
+}
+
+/*funcion que elimina los autos del carrito*/
+
+function eliminarProducto(e) {
+  if (e.target.classList.contains("btn-danger")) {
+    let autoID = e.target.getAttribute("id");
+    carrito = carrito.filter(
+      (auto) => auto.id != autoID
+    );
+
+    carritoHTML();
+  }
+}
+
+carritoo.addEventListener("click", eliminarProducto);

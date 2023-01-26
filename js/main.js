@@ -1,3 +1,9 @@
+/*constante que voy a usar*/
+
+const alerta= "";
+
+
+/*funcion de login del usuario*/
 function login(){
     
     usuarioLogin = document.getElementById("usuario").value,
@@ -12,32 +18,33 @@ function login(){
         guardarDatosLocal(user);
     }else{
         if (usuarioLogin != "ignacio" || contraseñaLogin != "1234"){
-            let alerta = document.createElement("div");
+            var alerta = document.createElement("div");
             alerta.innerHTML = `<div class= "alert alert-danger" role= "alert"> Datos erroneos al iniciar sesion</div>`
             document.body.append(alerta);
+            setTimeout(()=>{
+                limpiarDatosErroneos();
+            },1000)
+
+            function limpiarDatosErroneos(){
+                alerta.innerHTML="";
+            }
             
         }
-    }
-
-   
-        
+    }       
 }
+
+/*funcion que guarda los datos en localStorge*/
 
 function guardarDatosLocal(usuario){
     localStorage.setItem("usuario:",JSON.stringify(usuario))
 }
 
-
+/*boton de login*/
 
 botonLogin.addEventListener("click",()=>{
   login();
-
 })
 
-/*function recuperarUsuario(localStorage){
-    let usuarioStorage = JSON.parse(localStorage.getItem("usuario"));
-    return usuarioStorage;
-}*/
 
 
 

@@ -1,11 +1,12 @@
 [
-    { "img": "../assets/img/fiat punto.jpg","titulo": "Fiat Uno","id": 1 },
+    { "img": "../assets/img/punto.jpg","titulo": "Fiat Uno","id": 1 },
     {"img": "../assets/img/vento.jpg","titulo": "Wolsvagen Vento","id": 2 },
     { "img": "../assets/img/bora.jpg", "titulo": "Wolsvagen Bora","id": 3 },
-    {"img": "../assets/img/chevrolet corsa.jpg","titulo": "Chevrolet Corsa","id": 4},
-    {"img": "../assets/img/ford fiesta.jpg","titulo": "Ford Fiesta","id": 5},
-    {"img": "../assets/img/wolsvagen up.jpg","titulo": "wolsvagen up","id": 6},
-    {"img": "../assets/img/ford ka.jpg","titulo": "Ford Ka","id": 7},
-    {"img": "../assets/img/fiat siena.jpg","titulo": "Fiat Siena","id": 8},
-    {"img": "../assets/img/yaris.jpg","titulo": "Toyota Yaris","id": 9}
+    {"img": "../assets/img/corsa.jpg","titulo": "Chevrolet Corsa","id": 4},
+    {"img": "../assets/img/fiesta.jpg","titulo": "Ford Fiesta","id": 5},
+    {"img": "../assets/img/up.jpg","titulo": "wolsvagen up","id": 6},
+    {"img": "../assets/img/ka.jpg","titulo": "Ford Ka","id": 7},
+    {"img": "../assets/img/siena.jpg","titulo": "Fiat Siena","id": 8},
+    {"img": "../assets/img/yaris.jpg","titulo": "Toyota Yaris","id": 9},
+    {"img": "../assets/img/jeep.jpg","titulo": "jeep","id":10}
 ]
