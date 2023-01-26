@@ -30,7 +30,7 @@ const boton = document.getElementById("botonLogin"),
 
 /*funcion para deslogearse*/
 function loginOut(){
-  window.location ="../login.html";
+  window.location ="../index.html";
   localStorage.clear();
 }
 
