@@ -131,9 +131,7 @@ async function calcularSeguro() {
       precio = parseInt(document.getElementById('swal-input1').value),
       anio = parseInt(document.getElementById('swal-input2').value)
       return  title = "el precio del seguro es: "+ precio/anio;
-        
-       
-      
+  
     }
   })
   

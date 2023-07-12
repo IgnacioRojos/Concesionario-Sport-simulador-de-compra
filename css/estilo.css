@@ -7,6 +7,13 @@ body{
     box-sizing: border-box;
 }
 
+.texto{
+    margin-left: 5px;
+}
+.cajaBuscador{
+    margin-left: 5px;
+}
+
 
 .conteiner{
     display: flex;
@@ -16,6 +23,11 @@ body{
     width: 100%;
     flex-direction: column;
     
+}
+
+.carritoImg{
+    margin-top: 20px;
+    width: 90px;
 }
 
 input{
@@ -89,5 +101,9 @@ input{
 .botonOut{
     margin-left: 1700px;
     background-color: red;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+}
+
+.imgSalida{
+    width: 30px;
 }
