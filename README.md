@@ -14,7 +14,7 @@ Bienvenido a **Concesionario Sport**, un simulador de compra de autos desarrolla
 
 > Para acceder a la simulación de compra, usá las siguientes credenciales:
 
-- **Usuario:** `cliente`
+- **Usuario:** `ignacio`
 - **Contraseña:** `1234`
 
 > Estas credenciales están pensadas para pruebas y demostraciones.
