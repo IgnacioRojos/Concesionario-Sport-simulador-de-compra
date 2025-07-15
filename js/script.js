@@ -5,6 +5,10 @@ const autos= [];
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
+import { db } from './firebaseConfig.js';
+import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+
 
 
 const boton = document.getElementById("botonLogin"),
@@ -41,14 +45,14 @@ botonParaSalir.addEventListener("click", loginOut);
 
 /*funcion para calcular precio del auto dependiendo la marca que se ingrese*/
 
-function calcularPrecio(){
+/*function calcularPrecio(){
   const marcaa = document.getElementById("marca").value;
   if (marcaa == "fiat"){
     const muestro = document.getElementById("muestroPrecio");
     const aviso = document.createElement("div");
     aviso.innerHTML = `<div class="alert alert-primary" role="alert" > 
                           <h3>El precio del Fiat Cronos es de 3.500.000</h3>
-                          <buttom id= "botonBo" class = "btn btn-danger" >Aceptar </buttom> 
+                          <button id= "botonBo" class = "btn btn-danger" >Aceptar </button> 
                        </div>`;
     muestro.appendChild(aviso);
 
@@ -60,7 +64,7 @@ function calcularPrecio(){
       aviso = document.createElement("div");
       aviso.innerHTML = `<div class="alert alert-primary" role="alert" > 
                             <h3>El precio del vowlsvagen up es de 1.500.000</h3>
-                            <buttom id= "botonBo" class = "btn btn-danger" >Aceptar </buttom> 
+                            <button id= "botonBo" class = "btn btn-danger" >Aceptar </button> 
                          </div>`;
       muestro.appendChild(aviso);
   
@@ -74,7 +78,7 @@ function calcularPrecio(){
     aviso = document.createElement("div");
     aviso.innerHTML = `<div class="alert alert-primary" role="alert" > 
                           <h3>El precio del chevrolet corsa es de 2.650.000</h3>
-                          <buttom id= "botonBo" class = "btn btn-danger" >Aceptar </buttom> 
+                          <button id= "botonBo" class = "btn btn-danger" >Aceptar </button> 
                        </div>`;
     muestro.appendChild(aviso);
 
@@ -87,7 +91,7 @@ function calcularPrecio(){
       aviso = document.createElement("div");
       aviso.innerHTML = `<div class="alert alert-primary" role="alert" > 
                             <h3>El precio del renault sandero es de 5.000.000</h3>
-                            <buttom id= "botonBo" class = "btn btn-danger" >Aceptar </buttom> 
+                            <button id= "botonBo" class = "btn btn-danger" >Aceptar </button> 
                          </div>`;
       muestro.appendChild(aviso);
   
@@ -100,7 +104,7 @@ function calcularPrecio(){
       aviso = document.createElement("div");
       aviso.innerHTML = `<div class="alert alert-primary" role="alert" > 
                             <h3>No se ingreso ninguna marca</h3>
-                            <buttom id= "botonBo" class = "btn btn-danger" >Aceptar </buttom> 
+                            <button id= "botonBo" class = "btn btn-danger" >Aceptar </button> 
                          </div>`;
       muestro.appendChild(aviso);
   
@@ -108,7 +112,32 @@ function calcularPrecio(){
       botonBor.addEventListener("click", limpiar);
   }
   
+}*/
+
+
+function calcularPrecio() {
+  const marcaa = document.getElementById("marca").value.toLowerCase();
+  const precios = {
+    fiat: "El precio del Fiat Cronos es de 3.500.000",
+    vw: "El precio del Volkswagen Up es de 1.500.000",
+    chevrolet: "El precio del Chevrolet Corsa es de 2.650.000",
+    renault: "El precio del Renault Sandero es de 5.000.000"
+  };
+
+  const mensaje = precios[marcaa] || "No se ingresó ninguna marca válida";
+
+  const aviso = document.createElement("div");
+  aviso.innerHTML = `
+    <div class="alert alert-primary" role="alert">
+      <h3>${mensaje}</h3>
+      <button id="botonBo" class="btn btn-danger">Aceptar</button>
+    </div>
+  `;
+  muestro.appendChild(aviso);
+
+  document.getElementById("botonBo").addEventListener("click", limpiar);
 }
+
 
 function limpiar(){
   muestro.innerHTML= "";
@@ -147,7 +176,7 @@ botonSegu.addEventListener("click", calcularSeguro);
 
 /*funcion que calcula los kilometros que puede hacer un auto, se presiona el boton de la marca de tu auto y se desplegará una lista*/
 
-function calcularKilometros(auto) {
+/*function calcularKilometros(auto) {
   const listado = document.createElement("div"),
         cerrado = document.createElement("div");
 
@@ -158,7 +187,7 @@ function calcularKilometros(auto) {
       for (let i = 1; i <= 10; i++) {
         kilometros = i * 9.5;
         listado.innerHTML += `<li class= "listKm">La cantidad de kilometros que va a a hacer con ${i} litros es de: ${kilometros} "km" </li>`
-        cerrado.innerHTML = `<buttom class="btn btn-danger"id="botonLista">aceptar</buttom>`
+        cerrado.innerHTML = `<button class="btn btn-danger"id="botonLista">aceptar</button>`
         kilometrosLista.appendChild(listado), 
         kilometrosLista.appendChild(cerrado); 
       }
@@ -171,7 +200,7 @@ function calcularKilometros(auto) {
       for (let i = 1; i <= 10; i++) {
         kilometros = i * 10;
         listado.innerHTML += `<li class= "listKm">La cantidad de kilometros que va a a hacer con ${i} litros es de: ${kilometros} "km" </li>`
-        cerrado.innerHTML = `<buttom class="btn btn-danger" id= "botonList">aceptar</buttom>`
+        cerrado.innerHTML = `<button class="btn btn-danger" id= "botonList">aceptar</button>`
         kilometrosLista.appendChild(listado);
         kilometrosLista.appendChild(cerrado);
 
@@ -185,7 +214,7 @@ function calcularKilometros(auto) {
       for (let i = 1; i <= 10; i++) {
         kilometros = i * 8;
         listado.innerHTML += `<li class= "listKm">La cantidad de kilometros que va a a hacer con ${i} litros es de: ${kilometros} "km" </li>`
-        cerrado.innerHTML = `<buttom class="btn btn-danger" id= "botonLis">aceptar</buttom>`
+        cerrado.innerHTML = `<button class="btn btn-danger" id= "botonLis">aceptar</button>`
         kilometrosLista.appendChild(listado);
         kilometrosLista.appendChild(cerrado);
 
@@ -199,7 +228,7 @@ function calcularKilometros(auto) {
       for (let i = 1; i <= 10; i++) {
         kilometros = i * 8;
         listado.innerHTML += `<li class= "listKm">La cantidad de kilometros que va a a hacer con ${i} litros es de: ${kilometros} "km" </li>`
-        cerrado.innerHTML = `<buttom class="btn btn-danger" id="botonLi">aceptar</buttom>`
+        cerrado.innerHTML = `<button class="btn btn-danger" id="botonLi">aceptar</button>`
         kilometrosLista.appendChild(listado);
         kilometrosLista.appendChild(cerrado);
 
@@ -211,6 +240,63 @@ function calcularKilometros(auto) {
 
 
   }
+}*/
+
+function calcularKilometros(marca) {
+  // Limpia antes de mostrar nuevos datos
+  kilometrosLista.innerHTML = "";
+
+  const listado = document.createElement("ul");
+  listado.classList.add("list-group", "mb-3");
+
+  let kmPorLitro;
+
+  switch (marca) {
+    case "fiat":
+      kmPorLitro = 9.5;
+      break;
+    case "vw":
+      kmPorLitro = 10;
+      break;
+    case "renault":
+      kmPorLitro = 8;
+      break;
+    case "chevrolet":
+      kmPorLitro = 8;
+      break;
+    default:
+      kmPorLitro = 0;
+      break;
+  }
+
+  if (kmPorLitro === 0) {
+    const li = document.createElement("li");
+    li.classList.add("list-group-item", "text-danger");
+    li.textContent = "Marca no reconocida.";
+    listado.appendChild(li);
+  } else {
+    for (let i = 1; i <= 10; i++) {
+      const kilometros = i * kmPorLitro;
+      const li = document.createElement("li");
+      li.classList.add("list-group-item");
+      li.textContent = `Con ${i} litro(s) su ${marca.toUpperCase()} recorrerá aproximadamente ${kilometros} km.`;
+      listado.appendChild(li);
+    }
+  }
+
+  // Botón para cerrar la lista
+  const cerrarDiv = document.createElement("div");
+  cerrarDiv.classList.add("text-center");
+  cerrarDiv.innerHTML = `
+    <button class="btn btn-danger mt-2" id="botonCerrarKilometros">Cerrar</button>
+  `;
+
+  kilometrosLista.appendChild(listado);
+  kilometrosLista.appendChild(cerrarDiv);
+
+  document.getElementById("botonCerrarKilometros").addEventListener("click", () => {
+    kilometrosLista.innerHTML = "";
+  });
 }
 
 
@@ -223,10 +309,17 @@ function limpiarLista(){
 
 /*botones a los cuales se le da la funcion de desplegar la lista con los kilometros que un auto puede hacer*/
 
-botonFiat.addEventListener("click",()=> calcularKilometros(fiat));
+botonFiat.addEventListener("click", () => calcularKilometros("fiat"));
+botonVw.addEventListener("click", () => calcularKilometros("vw"));
+botonRenault.addEventListener("click", () => calcularKilometros("renault"));
+botonChevrolet.addEventListener("click", () => calcularKilometros("chevrolet"));
+
+
+
+/*botonFiat.addEventListener("click",()=> calcularKilometros(fiat));
 botonVw.addEventListener("click",()=> calcularKilometros(vw));
 botonRenault.addEventListener("click",()=> calcularKilometros(renault));
-botonChevrolet.addEventListener("click",()=> calcularKilometros(chevrolet));
+botonChevrolet.addEventListener("click",()=> calcularKilometros(chevrolet));*/
 
 /*titulo de bienvenida al usuario con un temporizador para que se vaya y no estorbe al usuario*/ 
 
@@ -275,20 +368,17 @@ class Auto{
     this.titulo = titulo;
     this.id = id;
 	}
-  mostrarAutos(){
-    const tarjeta= `<div class="col">
-                      <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <div class="card h-100 card">
-                          <div class="card-body">
-                            <img src=${this.img} class="card-img-top perfilFoto" alt="...">
-                            <h5 class="card-title">${this.titulo}</h5>
-                            <button class="btn btn-primary" id= ${this.id} >Comprar</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>`
+  mostrarAutos() {
+    const tarjeta = `
+    <div class="card">
+        <img src="${this.img}" class="card-img-top" alt="${this.titulo}">
+        <div class="card-body">
+            <h5 class="card-title">${this.titulo}</h5>
+            <button class="btn btn-primary w-100 mt-2" id="${this.id}">Comprar</button>
+        </div>
+    </div>`;
     const contenedor = document.getElementById("contenedorCards");
-    contenedor.innerHTML += tarjeta
+    contenedor.innerHTML += tarjeta;
   }
 
   agregarEvent(){
@@ -302,22 +392,32 @@ class Auto{
 }
 /*fetch con diferentes funcionalidades*/ 
 
-fetch("../data.json")
+/*fetch("../data.json")
   .then((res) => res.json())
-  .then((data)=>{
-    data.forEach(aut =>{
-      let newAuto = new Auto(aut.img, aut.titulo, aut.id)
-      autos.push(newAuto)
-    }),
-    autos.forEach(e =>{
-      e.mostrarAutos()
-    }),
-    autos.forEach(e =>{
-      e.agregarEvent()
-    })
-  
+  .then((data) => {
+    data.forEach(aut => {
+      const newAuto = new Auto(aut.img, aut.titulo, aut.id);
+      autos.push(newAuto);
+      newAuto.mostrarAutos();
+    });
+    autos.forEach(e => e.agregarEvent());
   })
-  .catch(err => console.log(err));
+  .catch(err => console.error(err));*/
+
+async function obtenerAutos() {
+  const autosCollection = collection(db, "autos");
+  const autosSnapshot = await getDocs(autosCollection);
+  const autosData = autosSnapshot.docs.map(doc => doc.data());
+
+  autosData.forEach(aut => {
+    let newAuto = new Auto(aut.img, aut.titulo, aut.id);
+    autos.push(newAuto);
+  });
+  autos.forEach(e => e.mostrarAutos());
+  autos.forEach(e => e.agregarEvent());
+}
+
+obtenerAutos();
 
   /*funcion que agrega autos al carro,la parte del carro se encuentra abajo de los autos que se muestran*/
 
@@ -339,22 +439,18 @@ function agregarAlCarro(auto){
 function carritoHTML() {
   limpiarHTML();
   carrito.forEach((auto) => {
-    const row = document.createElement("div");
-    row.innerHTML = `
-      <div class = "col">
-        <div class=" row row-cols-1 row-cols-md-3 g-4">    
-            <div class="card h-100">
-                <div class="card-body">
-                    <img src= "${auto.img}" class = "card-img-top">
-                    <h5>${auto.titulo}</h5>
-                    <button class="btn btn-danger" id="${auto.id}">Eliminar Auto</button>
-                </div>
-            </div>
-        </div>
-      </div>          
-        `;
+    const card = document.createElement("div");
+    card.classList.add("card");
 
-    carritoo.appendChild(row);
+    card.innerHTML = `
+      <img src="${auto.img}" alt="${auto.titulo}">
+      <div class="card-body text-center">
+        <h5 class="card-title">${auto.titulo}</h5>
+        <button class="btn btn-danger" id="${auto.id}">Eliminar Auto</button>
+      </div>
+    `;
+
+    carritoo.appendChild(card);
   });
 }
 

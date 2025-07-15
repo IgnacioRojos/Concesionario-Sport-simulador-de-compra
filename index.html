@@ -1,36 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio De Sesion</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión - Concesionario Sport</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/estilo.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css">
 
-	<script defer src="js/main.js"></script>
+  <script defer src="js/main.js"></script>
 </head>
-<body>
-    <div class="conteiner">
+<body class="bg-light d-flex align-items-center justify-content-center vh-100">
+  <main class="container">
+    <section class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow p-4">
+          <h2 class="text-center mb-4">Iniciar sesión</h2>
 
-        <div class="row">
-            <div class="form-group">
-                <input id="usuario" type="text" class="form-control" name="username" placeholder="usuario" ></input>
-                <input id="contraseña" type="password" class="form-control" name="password" placeholder="Contraseña"></input>
+          <div class="form-group mb-3">
+            <label for="usuario" class="form-label">Usuario</label>
+            <input id="usuario" type="text" class="form-control" placeholder="Ingrese su usuario" />
+          </div>
 
-                <br>
+          <div class="form-group mb-3 position-relative">
+            <label for="contraseña" class="form-label">Contraseña</label>
+            <input id="contraseña" type="password" class="form-control" placeholder="Ingrese su contraseña" />
+            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2 mostrarContraseña" onclick="togglePassword()">👁</button>
+          </div>
 
-                <button id= "botonLogin" Class="btn btn-primary">Iniciar</button>
-            </div>
-            
+          <div id="mensajeError" class="alert alert-danger d-none mt-2" role="alert">
+            Usuario o contraseña incorrectos.
+          </div>
 
-            
+          <div class="d-grid mt-3">
+            <button id="botonLogin" class="btn btn-primary">Iniciar sesión</button>
+          </div>
         </div>
-        
+      </div>
+    </section>
+  </main>
 
-	</div>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+  <script>
+    function togglePassword() {
+      const input = document.getElementById("contraseña");
+      input.type = input.type === "password" ? "text" : "password";
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

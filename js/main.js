@@ -1,59 +1,46 @@
-/*constante que voy a usar*/
+// Elementos del DOM
+const botonLogin = document.getElementById("botonLogin");
+const inputUsuario = document.getElementById("usuario");
+const inputContraseña = document.getElementById("contraseña");
+const mensajeError = document.getElementById("mensajeError");
 
-const alerta= "";
+// Usuario y contraseña válidos 
+const usuarioValido = "ignacio";
+const contraseñaValida = "1234";
 
+// Evento al hacer click en el botón
+botonLogin.addEventListener("click", login);
 
-/*funcion de login del usuario*/
-function login(){
-    
-    usuarioLogin = document.getElementById("usuario").value,
-    contraseñaLogin = document.getElementById("contraseña").value;
-    const user ={
-        nom : usuarioLogin,
-        pass : contraseñaLogin
-    }
+// Función principal de login
+function login() {
+  const usuarioLogin = inputUsuario.value.trim();
+  const contraseñaLogin = inputContraseña.value.trim();
 
-    if (usuarioLogin == "ignacio" && contraseñaLogin == "1234"){
-        window.location = "views/ComprarAuto.html";
-        guardarDatosLocal(user);
-    }else{
-        if (usuarioLogin != "ignacio" || contraseñaLogin != "1234"){
-            var alerta = document.createElement("div");
-            alerta.innerHTML = `<div class= "alert alert-danger" role= "alert"> Datos erroneos al iniciar sesion</div>`
-            document.body.append(alerta);
-            setTimeout(()=>{
-                limpiarDatosErroneos();
-            },1000)
+  if (usuarioLogin === usuarioValido && contraseñaLogin === contraseñaValida) {
+    const user = {
+      nombre: usuarioLogin,
+      pass: contraseñaLogin
+    };
 
-            function limpiarDatosErroneos(){
-                alerta.innerHTML="";
-            }
-            
-        }
-    }       
+    guardarDatosLocal(user);
+    window.location = "views/ComprarAuto.html";
+  } else {
+    mostrarMensajeError("Usuario o contraseña incorrectos.");
+  }
 }
 
-/*funcion que guarda los datos en localStorge*/
-
-function guardarDatosLocal(usuario){
-    localStorage.setItem("usuario:",JSON.stringify(usuario))
+// Función para guardar en localStorage
+function guardarDatosLocal(usuario) {
+  localStorage.setItem("usuario", JSON.stringify(usuario));
 }
 
-/*boton de login*/
+// Función para mostrar mensaje de error
+function mostrarMensajeError(texto) {
+  mensajeError.textContent = texto;
+  mensajeError.classList.remove("d-none");
 
-botonLogin.addEventListener("click",()=>{
-  login();
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
+  setTimeout(() => {
+    mensajeError.classList.add("d-none");
+    mensajeError.textContent = "";
+  }, 2000);
+}
