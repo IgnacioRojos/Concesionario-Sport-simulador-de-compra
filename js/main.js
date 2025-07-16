@@ -18,7 +18,7 @@ function login() {
 
   if (usuarioLogin === usuarioValido && contraseñaLogin === contraseñaValida) {
     const user = {
-      nombre: usuarioLogin,
+      nom: usuarioLogin,
       pass: contraseñaLogin
     };
 
