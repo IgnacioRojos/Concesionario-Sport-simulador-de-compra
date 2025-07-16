@@ -63,10 +63,6 @@ La demo se utiliza una base de datos de firebase
 
 ## 📁 Cómo usar este proyecto localmente
 
-1️⃣ Cloná el repositorio:
-```bash
-git clone https://github.com/IgnacioRojos/Concesionario-Sport-simulador-de-compra.git
-
 ##🤝 Contribuciones
 Si querés contribuir, podés:
 
@@ -83,4 +79,9 @@ Si querés contactarme por oportunidades o feedback, podés escribirme por:
 LinkedIn: Ignacio Rojos
 
 Email: ignaciorojos.dev@gmail.com
+
+1️⃣ Cloná el repositorio:
+```bash
+git clone https://github.com/IgnacioRojos/Concesionario-Sport-simulador-de-compra.git
+
 
