@@ -6,7 +6,7 @@ Bienvenido a **Concesionario Sport**, un simulador de compra de autos desarrolla
 
 ## 🌐 Demo online
 
-▶️ **[Probar el simulador en Netlify](https://helpful-tanuki-e4dc1a.netlify.app/)**
+▶️ **[Probar el simulador en Netlify](https://simuladordecomprajavascript.netlify.app/)**
 
 Podés ingresar y utilizar la app directamente desde cualquier dispositivo.
 La demo se utiliza una base de datos de firebase
