@@ -36,8 +36,10 @@ La demo se utiliza una base de datos de firebase
 
 ## 📸 Capturas
 
-![Vista principal](./screenshots/vista-principal.png)
-![Carrito](./screenshots/carrito.png)
+![Vista principal](<img width="1919" height="908" alt="image" src="https://github.com/user-attachments/assets/0fcb110f-3e19-4467-baca-f0c8bc33725c" />
+)
+![Carrito](<img width="1902" height="909" alt="image" src="https://github.com/user-attachments/assets/dcd5ec92-d50e-43b7-a328-30fe0719b781" />
+)
 
 ---
 
