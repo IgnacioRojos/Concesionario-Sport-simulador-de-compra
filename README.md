@@ -9,7 +9,7 @@ Bienvenido a **Concesionario Sport**, un simulador de compra de autos desarrolla
 ▶️ **[Probar el simulador en Netlify](https://simuladordecomprajavascript.netlify.app/)**
 
 Podés ingresar y utilizar la app directamente desde cualquier dispositivo.
-La demo se utiliza una base de datos de firebase
+El catálogo de autos se carga desde un archivo `data.json` local (no usa una base de datos externa).
 
 ---
 
@@ -36,10 +36,11 @@ La demo se utiliza una base de datos de firebase
 
 ## 📸 Capturas
 
-![Vista principal](<img width="1919" height="908" alt="image" src="https://github.com/user-attachments/assets/0fcb110f-3e19-4467-baca-f0c8bc33725c" />
-)
-![Carrito](<img width="1902" height="909" alt="image" src="https://github.com/user-attachments/assets/dcd5ec92-d50e-43b7-a328-30fe0719b781" />
-)
+**Vista principal**  
+<img width="1919" height="908" alt="Vista principal del simulador" src="https://github.com/user-attachments/assets/0fcb110f-3e19-4467-baca-f0c8bc33725c" />
+
+**Carrito**  
+<img width="1902" height="909" alt="Carrito de compras" src="https://github.com/user-attachments/assets/dcd5ec92-d50e-43b7-a328-30fe0719b781" />
 
 ---
 
@@ -65,25 +66,30 @@ La demo se utiliza una base de datos de firebase
 
 ## 📁 Cómo usar este proyecto localmente
 
-##🤝 Contribuciones
-Si querés contribuir, podés:
-
-Reportar issues o mejoras.
-
-Crear un fork, aplicar tus mejoras y enviar un pull request.
-
-Compartir el proyecto para llegar a más personas.
-
-
-##📩 Contacto
-Si querés contactarme por oportunidades o feedback, podés escribirme por:
-
-LinkedIn: Ignacio Rojos
-
-Email: ignaciorojos.dev@gmail.com
-
 1️⃣ Cloná el repositorio:
 ```bash
 git clone https://github.com/IgnacioRojos/Concesionario-Sport-simulador-de-compra.git
+```
+
+2️⃣ Abrí `index.html` directamente en tu navegador (no requiere instalación ni servidor, es HTML/CSS/JS puro).
+
+---
+
+## 🤝 Contribuciones
+
+Si querés contribuir, podés:
+
+- Reportar issues o mejoras.
+- Crear un fork, aplicar tus mejoras y enviar un pull request.
+- Compartir el proyecto para llegar a más personas.
+
+---
+
+## 📩 Contacto
+
+Si querés contactarme por oportunidades o feedback, podés escribirme por:
+
+- LinkedIn: [Ignacio Rojos](https://www.linkedin.com/in/ignaciorojos)
+- Email: [nachorojos99@gmail.com](mailto:nachorojos99@gmail.com)
 
 
